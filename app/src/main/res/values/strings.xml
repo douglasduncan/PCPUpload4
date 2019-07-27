@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">PCPupload</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_add_vehicle1">addVehicle1</string>
+
+
+    <string name="add_miles_fragment">enter current mileage</string>
+    <string name="AddNewVehicleTitle">Add New Vehicle</string>
+    <string name="NameOfVehicle">Vehicle Name</string>
+    <string name="BoughtDate">Date when Bought</string>
+    <string name="SelectDate">Select Date</string>
+    <string name="MileageWhenBought">Mileage when Bought</string>
+</resources>
