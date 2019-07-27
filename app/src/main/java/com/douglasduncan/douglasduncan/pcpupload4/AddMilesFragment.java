@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -52,7 +53,8 @@ public class AddMilesFragment extends Fragment {
 
         if(prefsdir.exists() && prefsdir.isDirectory()){
             final String  listofCars[] = prefsdir.list();
-
+            final String  listofCarsModified[] = new String[(listofCars.length)+1];/////modified to include "select vehicle" at [0]
+            listofCarsModified[0] = "select vehicle";
             for (int i = 0; i < listofCars.length; i++) {
                 //listofCars.set(i, "D");
                 int length = listofCars[i].length( ); // length == whatever
@@ -60,6 +62,7 @@ public class AddMilesFragment extends Fragment {
 
                 String substr= listofCars[i].substring(0,length-4);
                  listofCars[i]=substr;////take off the .xml part of the filename
+                 listofCarsModified[i+1]=substr;////take off the .xml part of the filename list of cars modified used for array adaptor
              Log.i("looping", "looping"+substr);
             }
 
@@ -67,10 +70,35 @@ public class AddMilesFragment extends Fragment {
             // Create an ArrayAdapter using the string array and a default spinner layout
            //ArrayAdapter<String> adapter = ArrayAdapter.createFromResource(this,
               //    R.string.listofCars, android.R.layout.simple_spinner_item);
-            ArrayAdapter arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, listofCars);
+            ArrayAdapter arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, listofCarsModified);
             spinnerCarSelector.setAdapter(arrayAdapter);
+/////////////////////////////////////////////////////////////////////////////////////////////////retrieve old mileage and fill mileage input
+// /////////////////////////////////////////////////////////////////////////////////////////////////when car selector selects car
+spinnerCarSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Toast.makeText(getContext(), "selected", Toast.LENGTH_SHORT).show();
+        // CurrentMiles.setText("555");
+        String preSelected = spinnerCarSelector.getSelectedItem().toString();////////the selected vehicle
+        Toast.makeText(getContext(), ""+preSelected, Toast.LENGTH_SHORT).show();
+        if(!preSelected.equals("select vehicle")){///when vehicle is selected
 
+           // CurrentMiles.setText("555");
+            /////need to get last mileage from shared preferences
+            Context context = getActivity();
+            SharedPreferences SelectedCar = context.getSharedPreferences(preSelected, Context.MODE_PRIVATE);//connect securely to "prefs" file
+            String last_mileage = SelectedCar.getString("last_mileage", "");////first mileage
+            CurrentMiles.setText(last_mileage);
 
+            }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+        }
+);
 
             //Toast.makeText(getContext(), "aaaaaaaa"+listofCars[0], Toast.LENGTH_SHORT).show();
             Integer itemCount =  listofCars.length;
