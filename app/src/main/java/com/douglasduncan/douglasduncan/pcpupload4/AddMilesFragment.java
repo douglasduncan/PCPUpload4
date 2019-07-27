@@ -81,14 +81,13 @@ spinnerCarSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListe
         // CurrentMiles.setText("555");
         String preSelected = spinnerCarSelector.getSelectedItem().toString();////////the selected vehicle
         Toast.makeText(getContext(), ""+preSelected, Toast.LENGTH_SHORT).show();
-        if(!preSelected.equals("select vehicle")){///when vehicle is selected
+        if(!preSelected.equals("select vehicle")){///when vehicle is selected but NOT "select vehicle"
 
-           // CurrentMiles.setText("555");
             /////need to get last mileage from shared preferences
             Context context = getActivity();
             SharedPreferences SelectedCar = context.getSharedPreferences(preSelected, Context.MODE_PRIVATE);//connect securely to "prefs" file
             String last_mileage = SelectedCar.getString("last_mileage", "");////first mileage
-            CurrentMiles.setText(last_mileage);
+            CurrentMiles.setText(last_mileage);//set the text view to the last mileage
 
             }
             }
