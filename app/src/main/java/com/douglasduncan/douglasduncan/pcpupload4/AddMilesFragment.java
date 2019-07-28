@@ -77,10 +77,10 @@ public class AddMilesFragment extends Fragment {
 spinnerCarSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(getContext(), "selected", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), "selected", Toast.LENGTH_SHORT).show();
         // CurrentMiles.setText("555");
         String preSelected = spinnerCarSelector.getSelectedItem().toString();////////the selected vehicle
-        Toast.makeText(getContext(), ""+preSelected, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), ""+preSelected, Toast.LENGTH_SHORT).show();
         if(!preSelected.equals("select vehicle")){///when vehicle is selected but NOT "select vehicle"
 
             /////need to get last mileage from shared preferences
