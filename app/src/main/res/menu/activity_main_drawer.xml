@@ -12,6 +12,12 @@
             android:id="@+id/add-vehicle"
             android:icon="@drawable/ic_menu_share"
             android:title="Add Vehicle" />
+        <item
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Edit Vehicles" />
+        <item
+            android:icon="@android:drawable/ic_delete"
+            android:title="Remove Vehicles" />
     </group>
 
     <item android:title="Communicate">
